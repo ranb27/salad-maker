@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function IngredientSearch() {
+export default function IngredientSearch({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: (value: string) => void;
+}) {
   return (
     <div className="w-full lg:w-7/12">
       <label className="input duration-300 flex items-center gap-2 px-8 rounded-xl">
@@ -17,6 +23,8 @@ export default function IngredientSearch() {
           />
         </svg>
         <input
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
           type="text"
           className="grow"
           placeholder="Search ingredients to make a salad..."

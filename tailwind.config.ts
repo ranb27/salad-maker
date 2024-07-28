@@ -18,6 +18,37 @@ module.exports = {
         },
       },
     },
+    animation: {
+      fade: "fade .6s ease-in-out",
+      delay: "delay .8s ease-in-out",
+      rtl: "rtl .6s ease-in-out",
+      ltr: "ltr .6s ease-in-out",
+      floating: "floating 3s ease-in-out infinite",
+    },
+    keyframes: () => ({
+      fade: {
+        "0%": { opacity: 0, transform: "translateY(16px)" },
+        "100%": { opacity: 1, transform: "translateY(0px)" },
+      },
+      delay: {
+        "0%": { opacity: 0, transform: "translateY(16px)" },
+        "50%": { opacity: 0, transform: "translateY(8px)" },
+        "100%": { opacity: 1, transform: "translateY(0px)" },
+      },
+      rtl: {
+        "0%": { opacity: 0, transform: "translateX(10%)" },
+        "100%": { opacity: 1, transform: "translateX(0)" },
+      },
+      ltr: {
+        "0%": { opacity: 0, transform: "translateX(-10%)" },
+        "100%": { opacity: 1, transform: "translateX(0)" },
+      },
+      floating: {
+        "0%": { transform: "translateY(0px)" },
+        "50%": { transform: "translateY(-5px)" },
+        "100%": { transform: "translateY(0px)" },
+      },
+    }),
   },
   plugins: [require("daisyui")],
 

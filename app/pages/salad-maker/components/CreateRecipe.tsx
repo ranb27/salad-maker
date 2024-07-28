@@ -1,16 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function CreateRecipe() {
+// Ingredient interface
+interface Ingredient {
+  ingredient_id: number;
+  category: string;
+  ingredient: string;
+  image: string | null;
+  calories: number;
+  amount: number;
+}
+
+// Props for the CreateRecipe component
+interface CreateRecipeProps {
+  ingredientList: Ingredient[];
+  postRecipe: (args: {
+    recipeName: string;
+    createIngredientList: Ingredient[];
+  }) => void;
+}
+
+export default function CreateRecipe({
+  ingredientList,
+  postRecipe,
+}: CreateRecipeProps) {
+  // Sum of calories
+  const totalCalories = ingredientList.reduce(
+    (acc, ingredient) => acc + ingredient.calories * ingredient.amount,
+    0
+  );
+
+  // Sum Amount
+  const totalAmount = ingredientList.reduce(
+    (acc, ingredient) => acc + ingredient.amount,
+    0
+  );
+
+  const [recipeName, setRecipeName] = useState("");
+
   return (
     <div className="flex gap-4 w-full mx-40">
       <div className="bg-warning p-4 w-full rounded-2xl font-bold px-8 text-3xl flex justify-between">
         <p className="flex gap-2">
           <span className="py-4 px-6 bg-base-100 rounded-2xl text-warning">
-            10
+            {totalAmount}
           </span>
           <span className="my-auto text-base-100">Your ingredients</span>
         </p>
-        <p className="my-auto text-base-100">345 Cal</p>
+        <p className="my-auto text-base-100">{totalCalories} Cal</p>
       </div>
       <button
         className="btn bg-[#2fb62d] text-3xl rounded-2xl h-full font-bold text-base-100"
@@ -25,6 +61,7 @@ export default function CreateRecipe() {
       >
         Create Recipe
       </button>
+      {/* Dialog */}
       <dialog id="create_recipe_modal" className="modal">
         <div className="modal-box max-w-md">
           <form method="dialog" className="flex justify-end">
@@ -54,6 +91,8 @@ export default function CreateRecipe() {
               type="text"
               placeholder="Input Your Recipe Name..."
               className="input input-bordered w-full"
+              value={recipeName}
+              onChange={(e) => setRecipeName(e.target.value)}
             />
           </div>
           <div className="modal-action">
@@ -62,7 +101,12 @@ export default function CreateRecipe() {
             </form>
             <button
               onClick={() => {
-                alert("Create new recipe");
+                //post recipe
+                postRecipe({
+                  recipeName: recipeName,
+                  createIngredientList: ingredientList,
+                });
+
                 //close modal
                 const createRecipeModal = document.getElementById(
                   "create_recipe_modal"
