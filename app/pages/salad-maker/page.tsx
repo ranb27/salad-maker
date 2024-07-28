@@ -163,7 +163,10 @@ function page() {
         console.error("Error inserting data:", error);
         return;
       }
-
+    } catch (error) {
+      console.error("Error inserting data:", error);
+    } finally {
+      setCreateIngredientList([]);
       // Successful data insertion
       Swal.fire({
         icon: "success",
@@ -174,10 +177,6 @@ function page() {
         color: "oklch(var(--bc))", // Set text color
         confirmButtonColor: "oklch(var(--wa))", // Set button color
       });
-    } catch (error) {
-      console.error("Error inserting data:", error);
-    } finally {
-      setCreateIngredientList([]);
     }
   };
 
