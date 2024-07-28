@@ -2,10 +2,16 @@ import React from "react";
 import Image from "next/image";
 import { title } from "process";
 
-export default function CategoryCard({ title }: { title: string }) {
+export default function CategoryCard({
+  title,
+  pic,
+}: {
+  title: string;
+  pic: string;
+}) {
   return (
     <>
-      <div className="card bg-base-100 shadow-lg">
+      <div className="card bg-base-100 shadow-lg cursor-pointer hover:scale-105 duration-200">
         <div className="flex justify-end m-2">
           <svg
             viewBox="0 0 1024 1024"
@@ -18,7 +24,7 @@ export default function CategoryCard({ title }: { title: string }) {
         </div>
         <div className="mb-4">
           <Image
-            src="/category-image/vegetable.png"
+            src={pic}
             width={240}
             height={240}
             alt="poster"

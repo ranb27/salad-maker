@@ -19,9 +19,9 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      {user.email?.split("@")[0]}
       <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline text-base-content btn">
+        <button className="py-2 px-4 rounded-md no-underline text-base-content btn-sm btn-error btn">
           Logout
         </button>
       </form>

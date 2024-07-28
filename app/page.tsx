@@ -14,18 +14,18 @@ export default async function Index({
   Component: any;
   pageProps: any;
 }) {
-  const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
-    try {
-      createClient();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
+  // const canInitSupabaseClient = () => {
+  //   // This function is just for the interactive tutorial.
+  //   // Feel free to remove it once you have Supabase connected.
+  //   try {
+  //     createClient();
+  //     return true;
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // };
 
-  const isSupabaseConnected = canInitSupabaseClient();
+  // const isSupabaseConnected = canInitSupabaseClient();
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -41,7 +41,7 @@ export default async function Index({
             <h1 className="mb-5 text-5xl font-bold text-warning">
               Salad Maker
             </h1>
-            <p className="mb-5 text-base-content">
+            <p className="mb-5 text-base">
               Create delicious salads effortlessly with Salad Maker. Select
               ingredients, customize flavors, and enjoy a fresh, healthy meal
               tailored to your taste. Simplify meal prep and explore endless
