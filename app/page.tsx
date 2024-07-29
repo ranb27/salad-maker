@@ -1,7 +1,8 @@
+import { AppProps } from "next/app";
 import hero_image from "../public/hero_image.jpg";
 import Link from "next/link";
 
-export default function Index() {
+export default function Index({ Component, pageProps }: AppProps) {
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div
@@ -22,7 +23,7 @@ export default function Index() {
               tailored to your taste. Simplify meal prep and explore endless
               salad possibilities with our intuitive app.
             </p>
-            <Link href="pages/salad-maker" className="btn btn-warning">
+            <Link href="/salad-maker" className="btn btn-warning">
               Get Started
             </Link>
           </div>
