@@ -1,8 +1,7 @@
-import { AppProps } from "next/app";
 import hero_image from "../public/hero_image.jpg";
 import Link from "next/link";
 
-export default function Index({ Component, pageProps }: AppProps) {
+export default async function Index() {
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div
