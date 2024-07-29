@@ -4,7 +4,7 @@ import NavSidebar from "./components/NavSidebar";
 import AuthButton from "../components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import ThemeSwitch from "./components/ThemeSwitch";
-import { ThemeProvider } from "@/app/components/ThemeProvider";
+import { ThemeProvider } from "@/app/contexts/ThemeProvider";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
