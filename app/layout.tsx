@@ -18,7 +18,7 @@ const inter = Inter({
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
+  title: "Salad Maker",
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
@@ -43,6 +43,21 @@ export default function RootLayout({
   return (
     <ThemeProvider>
       <html lang="en" className={`${inter.variable}`}>
+        <head>
+          <link rel="icon" href="/app/favicon.ico" sizes="any" />
+          <link
+            rel="icon"
+            href="/icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+          <link
+            rel="apple-touch-icon"
+            href="/apple-icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+        </head>
         <body className="bg-base-200 text-base-content duration-500">
           <NavSidebar />
 
