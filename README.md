@@ -1,12 +1,12 @@
 # salad-maker
  This is Salad Maker using next (typescript, tailwind-daisyui)
- site url: https://salad-maker-git-main-ranb27s-projects.vercel.app/
+ <h1>site url: https://salad-maker-git-main-ranb27s-projects.vercel.app/</h1>
 
 Database Provider & API: supabase (REST)
-example : https://<url>.supabase.co/rest/v1/ingredients_master?apikey=<anon_key>&req_params=eq.value
-** If you want to test with local after clone this project, don't forget to add .env.local contain about
-"NEXT_PUBLIC_SUPABASE_URL=<supabase_url>"
-"NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon_key>"
+example : https://<url>.supabase.co/rest/v1/ingredients_master?apikey=<anon_key>&req_params=eq.value <br/>
+** If you want to test with local after clone this project, don't forget to add .env.local contain about <br/>
+"NEXT_PUBLIC_SUPABASE_URL=<supabase_url>" <br/>
+"NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon_key>" <br/>
 (contact me to get key) <br/>
 OR <br/>
 Can use supabase and create your project salad-maker contain 2 table name "ingredients_master" (columns: ingredient_id, ingredient, category, image, calories) //need data with manual add
@@ -16,8 +16,8 @@ Require user login for auth to use feature "Create(POST), Update(PATCH) and Dele
 Read(GET) Show for all user and anonymous in page Recipe <br/>
 Read(GET) Require auth user to display ingredients list for create recipe
 
-Page - Salad Maker
-GET req.query: category
+Page - Salad Maker <br/>
+GET req.query: category <br/>
 POST req.body
 {
     "recipe_name": "Summer Salad",
@@ -31,10 +31,10 @@ POST req.body
             "category": "vegetable"
         }
     ]
-}
+} <br/>
 
-Page - Recipe
-GET req.query: no req (get *)
+Page - Recipe <br/>
+GET req.query: no req (get *) <br/>
 PATCH req.qeury: id, req.body
 {
     "ingredient_list": [
@@ -46,5 +46,5 @@ PATCH req.qeury: id, req.body
             "category": "vegetable"
         }
     ]
-}
+} <br/>
 DELETE req.query: id
