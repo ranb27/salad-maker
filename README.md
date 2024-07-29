@@ -7,18 +7,14 @@ example : https://<url>.supabase.co/rest/v1/ingredients_master?apikey=<anon_key>
 ** If you want to test with local after clone this project, don't forget to add .env.local contain about
 "NEXT_PUBLIC_SUPABASE_URL=<supabase_url>"
 "NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon_key>"
-(contact me to get key)
-
-OR
-
+(contact me to get key) <br/>
+OR <br/>
 Can use supabase and create your project salad-maker contain 2 table name "ingredients_master" (columns: ingredient_id, ingredient, category, image, calories) //need data with manual add
-and table name "recipes_record" (columns: id, recipe_name, ingredient_list, created_by)
+and table name "recipes_record" (columns: id, recipe_name, ingredient_list, created_by) <br/>
 
-----
-Require user login for auth to use feature "Create(POST), Update(PATCH) and Delete(DELETE)"
-Read(GET) Show for all user and anonymous in page Recipe
+Require user login for auth to use feature "Create(POST), Update(PATCH) and Delete(DELETE)" <br/>
+Read(GET) Show for all user and anonymous in page Recipe <br/>
 Read(GET) Require auth user to display ingredients list for create recipe
-----
 
 Page - Salad Maker
 GET req.query: category
