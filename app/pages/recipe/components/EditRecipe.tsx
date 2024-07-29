@@ -96,7 +96,10 @@ export default function EditRecipe({
         icon: "success",
         title: "Recipe updated successfully!",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
+        background: "oklch(var(--b3))",
+        color: "oklch(var(--bc))",
+        confirmButtonColor: "oklch(var(--wa))",
       });
 
       setIsEditting(false);

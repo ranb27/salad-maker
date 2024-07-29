@@ -38,8 +38,8 @@ export default function CreateRecipe({
   const [recipeName, setRecipeName] = useState("");
 
   return (
-    <div className="flex gap-4 w-full mx-40">
-      <div className="bg-warning p-4 w-full rounded-2xl font-bold px-8 text-3xl flex justify-between">
+    <div className="grid grid-cols-1 md:flex gap-4 w-full md:mx-40">
+      <div className="bg-warning p-4 w-full rounded-2xl font-bold px-8 text-3xl flex justify-between flex-col sm:flex-row text-end">
         <p className="flex gap-2">
           <span className="py-4 px-6 bg-base-100 rounded-2xl text-warning">
             {totalAmount}
@@ -49,7 +49,7 @@ export default function CreateRecipe({
         <p className="my-auto text-base-100">{totalCalories} Cal</p>
       </div>
       <button
-        className="btn bg-[#2fb62d] text-3xl rounded-2xl h-full font-bold text-base-100"
+        className="btn bg-[#2fb62d] text-3xl btn-lg rounded-2xl h-full font-bold text-base-100"
         onClick={() => {
           const createRecipeModal = document.getElementById(
             "create_recipe_modal"

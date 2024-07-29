@@ -62,7 +62,7 @@ const IngredientCard = ({
   };
 
   return (
-    <div className="flex justify-between animate-fade">
+    <div className="grid grid-cols-1 lg:flex md:justify-between animate-fade">
       <div className="h-20 flex">
         {image && (
           <Image

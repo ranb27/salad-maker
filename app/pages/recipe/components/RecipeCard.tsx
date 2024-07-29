@@ -76,11 +76,11 @@ export default function RecipeCard({
                 (deleteRecipeModal as HTMLDialogElement).showModal();
               }
             }}
-            className={`btn w-full text-base text-error bg-base-100 rounded-full ${
+            className={`btn w-full text-base text-error  bg-base-100 rounded-full ${
               userAuth === createdBy ? "" : "btn-disabled"
             }`}
           >
-            <p className="text-nowrap flex gap-1">
+            <p className="text-nowrap flex gap-1 text-error">
               <svg
                 width="25"
                 height="24"
@@ -106,7 +106,7 @@ export default function RecipeCard({
               userAuth === createdBy ? "" : "btn-disabled"
             }`}
           >
-            <p className="text-nowrap flex gap-1">
+            <p className="text-nowrap flex gap-1 text-base-content">
               <svg
                 width="24"
                 height="24"
@@ -225,7 +225,7 @@ export default function RecipeCard({
                               <img
                                 src={ingredient.image}
                                 alt={ingredient.ingredient}
-                                className="h-16 w-auto object-cover mx-auto"
+                                className="h-16 w-full object-cover mx-auto"
                               />
                             ) : (
                               "No Image"

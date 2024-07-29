@@ -131,7 +131,7 @@ function page() {
           ) : (
             <>
               <p className="text-2xl font-bold my-4">Your Recipe</p>
-              <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {recipeData.map((recipe) => (
                   <RecipeCard
                     key={recipe.id}

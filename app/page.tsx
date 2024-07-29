@@ -22,7 +22,7 @@ export default async function Index() {
               tailored to your taste. Simplify meal prep and explore endless
               salad possibilities with our intuitive app.
             </p>
-            <Link href="/salad-maker" className="btn btn-warning">
+            <Link href="pages/salad-maker" className="btn btn-warning">
               Get Started
             </Link>
           </div>

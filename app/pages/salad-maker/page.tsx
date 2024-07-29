@@ -273,8 +273,8 @@ function page() {
         </>
       ) : (
         <div className="flex justify-center items-center h-screen">
-          <h1 className="text-2xl font-bold">
-            Make your wonderful salad!,{" "}
+          <h1 className="text-2xl font-bold text-center">
+            Make your wonderful salad!, <br />
             <Link
               href={"/login"}
               className="link text-warning hover:text-info duration-300"
