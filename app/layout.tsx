@@ -41,23 +41,23 @@ export default function RootLayout({
   const isSupabaseConnected = canInitSupabaseClient();
 
   return (
-    <ThemeProvider>
-      <html lang="en" className={`${inter.variable}`}>
-        <head>
-          <link rel="icon" href="/app/favicon.ico" sizes="any" />
-          <link
-            rel="icon"
-            href="/icon?<generated>"
-            type="image/<generated>"
-            sizes="<generated>"
-          />
-          <link
-            rel="apple-touch-icon"
-            href="/apple-icon?<generated>"
-            type="image/<generated>"
-            sizes="<generated>"
-          />
-        </head>
+    <html lang="en" className={`${inter.variable}`}>
+      <head>
+        <link rel="icon" href="/app/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+      </head>
+      <ThemeProvider>
         <body className="bg-base-200 text-base-content duration-500">
           <NavSidebar />
 
@@ -73,7 +73,7 @@ export default function RootLayout({
             </div>
           </div>
         </body>
-      </html>
-    </ThemeProvider>
+      </ThemeProvider>
+    </html>
   );
 }
