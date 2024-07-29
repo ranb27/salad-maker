@@ -28,7 +28,7 @@ module.exports = {
     keyframes: () => ({
       fade: {
         "0%": { opacity: 0, transform: "translateY(16px)" },
-        "100%": { opacity: 1, transform: "translateY(0px)" },
+        "50%": { opacity: 1, transform: "translateY(0px)" },
       },
       delay: {
         "0%": { opacity: 0, transform: "translateY(16px)" },
@@ -36,11 +36,11 @@ module.exports = {
         "100%": { opacity: 1, transform: "translateY(0px)" },
       },
       rtl: {
-        "0%": { opacity: 0, transform: "translateX(10%)" },
+        "0%": { opacity: 0, transform: "translateX(5%)" },
         "100%": { opacity: 1, transform: "translateX(0)" },
       },
       ltr: {
-        "0%": { opacity: 0, transform: "translateX(-10%)" },
+        "0%": { opacity: 0, transform: "translateX(-5%)" },
         "100%": { opacity: 1, transform: "translateX(0)" },
       },
       floating: {

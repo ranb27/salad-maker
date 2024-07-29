@@ -143,9 +143,27 @@ function page() {
     createIngredientList: Ingredient[];
   }) => {
     try {
+      // Trim the recipe name and check if it's empty
+      const trimmedRecipeName = recipeName.trim();
+      if (!trimmedRecipeName) {
+        Swal.fire({
+          icon: "warning",
+          title: "Warning",
+          text: "Recipe name cannot be empty",
+          timer: 2000,
+          background: "oklch(var(--b3))",
+          color: "oklch(var(--bc))",
+          confirmButtonColor: "oklch(var(--wa))",
+        });
+        return;
+      }
+
       const ingredient_list = createIngredientList.map((ingredient) => ({
         ingredient: ingredient.ingredient,
         amount: ingredient.amount,
+        image: ingredient.image,
+        category: ingredient.category,
+        calories: ingredient.calories,
       }));
 
       // Assuming userAuth is available in the scope
@@ -153,21 +171,26 @@ function page() {
 
       const { error } = await supabase.from("recipes_record").upsert([
         {
-          recipe_name: recipeName,
+          recipe_name: trimmedRecipeName,
           ingredient_list,
           created_by,
         },
       ]);
 
       if (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Failed to insert data.",
+          timer: 2000,
+          background: "oklch(var(--b3))", // Set background color
+          color: "oklch(var(--bc))", // Set text color
+          confirmButtonColor: "oklch(var(--wa))", // Set button color
+        });
         console.error("Error inserting data:", error);
         return;
       }
-    } catch (error) {
-      console.error("Error inserting data:", error);
-    } finally {
-      setCreateIngredientList([]);
-      // Successful data insertion
+
       Swal.fire({
         icon: "success",
         title: "Success",
@@ -177,6 +200,10 @@ function page() {
         color: "oklch(var(--bc))", // Set text color
         confirmButtonColor: "oklch(var(--wa))", // Set button color
       });
+    } catch (error) {
+      console.error("Error inserting data:", error);
+    } finally {
+      setCreateIngredientList([]);
     }
   };
 
@@ -195,7 +222,7 @@ function page() {
               />
             </div>
             {/* image */}
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 animate-fade">
               <Image
                 src={poster_salad_maker}
                 alt="poster"
@@ -204,7 +231,7 @@ function page() {
             </div>
             {/* category */}
             <h1 className="font-bold text-2xl">Select Category</h1>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-6 mb-2 ">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-6 mb-2 animate-rtl">
               {categoryData.map((category, index) => (
                 <CategoryCard
                   key={index}

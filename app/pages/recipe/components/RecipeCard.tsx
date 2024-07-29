@@ -1,25 +1,85 @@
 import React from "react";
+import UserEmailFetcher from "@/app/components/AuthUser";
 
-export default function RecipeCard() {
+interface IngredientList {
+  category: string;
+  ingredient: string;
+  image: string | null;
+  calories: number;
+  amount: number;
+}
+
+export default function RecipeCard({
+  id,
+  recipeName,
+  ingredientList,
+  createdBy,
+  deleteRecipe,
+  setIsEditting,
+  setUpdateId,
+}: {
+  id: number;
+  recipeName: string;
+  ingredientList: IngredientList[];
+  createdBy: string;
+  deleteRecipe: (id: number) => void;
+  setIsEditting: (isEditting: boolean) => void;
+  setUpdateId: (id: number) => void;
+}) {
+  //! Auth
+  const userAuth = UserEmailFetcher();
+
+  // Sum of calories
+  const totalCalories = ingredientList.reduce(
+    (acc, list) => acc + list.calories * list.amount,
+    0
+  );
+
   return (
     <div
-      className="card bg-background min-h-96 object-cover bg-center"
+      className="card bg-background min-h-96 object-cover bg-center animate-fade"
       style={{
         backgroundImage: 'url("/bg_card_recipe.png")',
       }}
     >
       <div className="p-6 h-full flex flex-col justify-between">
-        <div className="card bg-base-100 px-6 py-10 grid gap-4">
-          <p className="text-lg">Recipe name demo</p>
+        <div
+          onClick={() => {
+            const viewRecipeModal = document.getElementById(
+              `view_recipe_modal_${id}`
+            );
+            if (viewRecipeModal) {
+              (viewRecipeModal as HTMLDialogElement).showModal();
+            }
+          }}
+          className="card bg-base-100 px-6 py-10 grid gap-4 hover:scale-105 cursor-pointer duration-200"
+        >
+          <p className="text-lg">{recipeName}</p>
           <p className="text-3xl font-bold">
-            999 <span className="text-warning">Cal</span>
+            {totalCalories} <span className="text-warning">Cal</span>
           </p>
           <p className="text-xs text-end opacity-75">
-            Created by <span className="text-warning">User</span>
+            Created by{" "}
+            <span className="text-warning">
+              {createdBy?.split("@")[0].toUpperCase()}
+            </span>
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <button className="btn w-full text-base text-error bg-base-100 rounded-full">
+          <button
+            // onClick={() => deleteRecipe(id)}
+            onClick={() => {
+              const deleteRecipeModal = document.getElementById(
+                `delete_recipe_modal_${id}`
+              );
+              if (deleteRecipeModal) {
+                (deleteRecipeModal as HTMLDialogElement).showModal();
+              }
+            }}
+            className={`btn w-full text-base text-error bg-base-100 rounded-full ${
+              userAuth === createdBy ? "" : "btn-disabled"
+            }`}
+          >
             <p className="text-nowrap flex gap-1">
               <svg
                 width="25"
@@ -37,7 +97,15 @@ export default function RecipeCard() {
             </p>
           </button>
 
-          <button className="btn w-full text-base text-base-content bg-base-100 rounded-full">
+          <button
+            onClick={() => {
+              setIsEditting(true);
+              setUpdateId(id);
+            }}
+            className={`btn w-full text-base text-base-content bg-base-100 rounded-full ${
+              userAuth === createdBy ? "" : "btn-disabled"
+            }`}
+          >
             <p className="text-nowrap flex gap-1">
               <svg
                 width="24"
@@ -60,6 +128,119 @@ export default function RecipeCard() {
           </button>
         </div>
       </div>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id={`delete_recipe_modal_${id}`} className="modal">
+        <div className="modal-box max-w-lg">
+          <form method="dialog" className="flex justify-end">
+            <button className="opacity-50 font-bold btn btn-ghost text-lg">
+              X
+            </button>
+          </form>
+          <div className="grid gap-4">
+            <div className="font-bold text-lg flex justify-center">
+              <svg
+                width="72"
+                height="72"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="72" height="72" rx="36" fill="#FFF5F6" />
+                <path
+                  d="M23.4501 50.9999H48.5501C51.1168 50.9999 52.7168 48.2166 51.4335 45.9999L38.8835 24.3166C37.6001 22.0999 34.4001 22.0999 33.1168 24.3166L20.5668 45.9999C19.2835 48.2166 20.8835 50.9999 23.4501 50.9999ZM36.0001 39.3332C35.0835 39.3332 34.3335 38.5832 34.3335 37.6666V34.3332C34.3335 33.4166 35.0835 32.6666 36.0001 32.6666C36.9168 32.6666 37.6668 33.4166 37.6668 34.3332V37.6666C37.6668 38.5832 36.9168 39.3332 36.0001 39.3332ZM37.6668 45.9999H34.3335V42.6666H37.6668V45.9999Z"
+                  fill="oklch(var(--er))"
+                />
+              </svg>
+            </div>
+
+            <h3 className="font-bold text-lg text-center ">
+              Delete Recipe : <span className="text-error">{recipeName}</span> ?
+            </h3>
+
+            <div className="modal-action">
+              <form method="dialog" className="grid grid-cols-2 gap-2 w-full">
+                <button className="btn text-base btn-ghost">Cancel</button>
+                <button
+                  onClick={() => deleteRecipe(id)}
+                  className="btn btn-error text-base-100 text-base"
+                >
+                  Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog id={`view_recipe_modal_${id}`} className="modal">
+        <div className="modal-box max-w-4xl">
+          <form method="dialog" className="flex justify-end">
+            <button className="opacity-50 font-bold btn btn-ghost text-lg">
+              X
+            </button>
+          </form>
+          <div className="grid gap-4">
+            <div className="font-bold text-lg flex justify-center p-5 bg-primary/10 rounded-full mx-auto">
+              <svg
+                viewBox="0 0 24 24"
+                fill="oklch(var(--p))"
+                width="32"
+                height="32"
+              >
+                <path d="M3 2h2v20H3zm7 4h7v2h-7zm0 4h7v2h-7z" />
+                <path d="M19 2H6v20h13c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 18H8V4h11v16z" />
+              </svg>
+            </div>
+
+            <h3 className="font-bold text-lg text-center ">
+              Recipe : <span className="text-primary">{recipeName}</span>
+            </h3>
+
+            <div className="grid gap-4">
+              <div className="grid gap-4">
+                <p className="font-bold text-lg menu-title">Ingredients</p>
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    {/* Table head */}
+                    <thead>
+                      <tr className="text-primary text-center">
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Calories</th>
+                        <th>Image</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Table rows */}
+                      {ingredientList.map((ingredient, index) => (
+                        <tr key={index} className="text-center">
+                          <td>{ingredient.ingredient}</td>
+                          <td>{ingredient.amount}</td>
+                          <td>{ingredient.category}</td>
+                          <td>{ingredient.calories}</td>
+                          <td>
+                            {ingredient.image ? (
+                              <img
+                                src={ingredient.image}
+                                alt={ingredient.ingredient}
+                                className="h-16 w-auto object-cover mx-auto"
+                              />
+                            ) : (
+                              "No Image"
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

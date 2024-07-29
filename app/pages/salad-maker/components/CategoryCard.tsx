@@ -9,7 +9,7 @@ export default function CategoryCard({
 }: {
   title: string;
   pic: string;
-  setValue: React.Dispatch<React.SetStateAction<string[]>>;
+  setValue: (value: (prev: string[]) => string[]) => void;
   value: string[];
 }) {
   const isSelected = value.includes(title.toLowerCase());
