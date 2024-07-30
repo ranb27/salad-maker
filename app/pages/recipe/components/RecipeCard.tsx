@@ -15,7 +15,7 @@ export default function RecipeCard({
   ingredientList,
   createdBy,
   deleteRecipe,
-  setIsEditting,
+  setIsEditing,
   setUpdateId,
 }: {
   id: number;
@@ -23,7 +23,7 @@ export default function RecipeCard({
   ingredientList: IngredientList[];
   createdBy: string;
   deleteRecipe: (id: number) => void;
-  setIsEditting: (isEditting: boolean) => void;
+  setIsEditing: (isEditing: boolean) => void;
   setUpdateId: (id: number) => void;
 }) {
   //! Auth
@@ -99,7 +99,7 @@ export default function RecipeCard({
 
           <button
             onClick={() => {
-              setIsEditting(true);
+              setIsEditing(true);
               setUpdateId(id);
             }}
             className={`btn w-full text-base text-base-content bg-base-100 rounded-full ${

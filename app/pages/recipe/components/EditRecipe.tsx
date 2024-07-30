@@ -27,14 +27,14 @@ interface Ingredient {
 }
 
 export default function EditRecipe({
-  isEditting,
-  setIsEditting,
+  isEditing,
+  setIsEditing,
   ingredientData,
   updateId,
   fetchRecipeRecord,
 }: {
-  isEditting: boolean;
-  setIsEditting: (isEditting: boolean) => void;
+  isEditing: boolean;
+  setIsEditing: (isEditing: boolean) => void;
   ingredientData: Ingredient[];
   updateId: number;
   fetchRecipeRecord: () => void;
@@ -52,7 +52,7 @@ export default function EditRecipe({
   //! Fetch
   // get the ingredient list of the selected recipe
   useEffect(() => {
-    if (isEditting) {
+    if (isEditing) {
       const fetchIngredientRecord = async () => {
         try {
           let query = supabase
@@ -102,7 +102,7 @@ export default function EditRecipe({
         confirmButtonColor: "oklch(var(--wa))",
       });
 
-      setIsEditting(false);
+      setIsEditing(false);
     } catch (error: any) {
       console.error("Error", error.message);
     } finally {
@@ -190,7 +190,7 @@ export default function EditRecipe({
             </select>
 
             <button
-              onClick={() => setIsEditting(false)}
+              onClick={() => setIsEditing(false)}
               className="btn btn-lg text-neutral-content btn-neutral font-bold rounded-2xl"
             >
               Cancel

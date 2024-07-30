@@ -32,7 +32,7 @@ function page() {
   const supabase = createClient();
 
   //! States
-  const [isEditting, setIsEditting] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [updateId, setUpdateId] = useState<number>(0);
 
   const [ingredientData, setIngredientData] = useState<Ingredient[]>([]);
@@ -115,14 +115,14 @@ function page() {
       <div className="grid grid-cols-1 gap-8 px-10 mt-16 w-full">
         <h1 className="text-4xl font-bold">Recipe</h1>
         <div className="h-[80vh] bg-base-100 rounded-3xl p-6 overflow-y-scroll">
-          {isEditting ? (
+          {isEditing ? (
             <>
               <p className="text-2xl font-bold my-4">
                 Your ingredients to make a salad Recipe
               </p>
               <EditRecipe
-                isEditting={isEditting}
-                setIsEditting={setIsEditting}
+                isEditing={isEditing}
+                setIsEditing={setIsEditing}
                 ingredientData={ingredientData}
                 updateId={updateId}
                 fetchRecipeRecord={fetchRecipeRecord}
@@ -140,7 +140,7 @@ function page() {
                     ingredientList={recipe.ingredient_list}
                     createdBy={recipe.created_by}
                     deleteRecipe={deleteRecipe}
-                    setIsEditting={setIsEditting}
+                    setIsEditing={setIsEditing}
                     setUpdateId={setUpdateId}
                   />
                 ))}
