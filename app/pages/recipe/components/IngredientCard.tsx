@@ -36,6 +36,7 @@ const IngredientCard = ({
     );
   };
 
+  //TODO: Implemented remove not necessary paq
   // Function to handle the addition of an ingredient
   const handleAdd = () => {
     setIngredientListEdit((prev) => {
@@ -51,13 +52,10 @@ const IngredientCard = ({
             ? { ...item, amount: item.amount + 1 }
             : item
         );
-      } else {
-        // If ingredient does not exist, add a new entry
-        return [
-          ...prev,
-          { category: "", ingredient, image, calories, amount: 1 },
-        ];
       }
+
+      // If ingredient does not exist, return the previous state
+      return prev;
     });
   };
 
