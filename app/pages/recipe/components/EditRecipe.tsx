@@ -116,6 +116,7 @@ export default function EditRecipe({
     0
   );
 
+  //TODO: Implemented from findIndex to map method
   const handleSelectIngredient = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIngredientName = e.target.value;
 
@@ -125,16 +126,20 @@ export default function EditRecipe({
 
     if (selectedIngredient) {
       setIngredientListEdit((prev) => {
-        const existingIngredientIndex = prev.findIndex(
-          (item) => item.ingredient === selectedIngredient.ingredient
-        );
+        let ingredientExists = false;
 
-        if (existingIngredientIndex > -1) {
-          const updatedList = [...prev];
-          updatedList[existingIngredientIndex] = {
-            ...updatedList[existingIngredientIndex],
-            amount: updatedList[existingIngredientIndex].amount + 1,
-          };
+        const updatedList = prev.map((item) => {
+          if (item.ingredient === selectedIngredient.ingredient) {
+            ingredientExists = true;
+            return {
+              ...item,
+              amount: item.amount + 1,
+            };
+          }
+          return item;
+        });
+
+        if (ingredientExists) {
           return updatedList;
         } else {
           return [
