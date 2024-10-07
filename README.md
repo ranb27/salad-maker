@@ -1,51 +1,118 @@
-# salad-maker
- This is Salad Maker using next (typescript, tailwind-daisyui)
- <h1>site url: https://salad-maker-ranb.vercel.app</h1>
- <h2>**for test account, Email: test@ranb.com, Password: test</h2>
+# 🥗 Salad Maker
 
-Database Provider & API: supabase (REST)
-example : https://<url>.supabase.co/rest/v1/ingredients_master?apikey=<anon_key>&req_params=eq.value <br/>
-** If you want to test with local after clone this project, don't forget to add .env.local contain about <br/>
-"NEXT_PUBLIC_SUPABASE_URL=<supabase_url>" <br/>
-"NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon_key>" <br/>
-(contact me to get key) <br/>
-OR <br/>
-Can use supabase and create your project salad-maker contain 2 table name "ingredients_master" (columns: ingredient_id, ingredient, category, image, calories) //need data with manual add
-and table name "recipes_record" (columns: id, recipe_name, ingredient_list, created_by) <br/>
+A Next.js application for creating and managing salad recipes, built with TypeScript and Tailwind CSS + DaisyUI.
 
-Require user login for auth to use feature "Create(POST), Update(PATCH) and Delete(DELETE)" <br/>
-Read(GET) Show for all user and anonymous in page Recipe <br/>
-Read(GET) Require auth user to display ingredients list for create recipe
+## 🔗 Live Demo
 
-Page - Salad Maker <br/>
-GET req.query: category <br/>
-POST req.body
+Visit the live site: [https://salad-maker-ranb.vercel.app](https://salad-maker-ranb.vercel.app)
+
+### Test Account
+
+- **Email:** test@ranb.com
+- **Password:** test
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js with TypeScript
+- **Styling:** Tailwind CSS + DaisyUI
+- **Database & API:** Supabase (REST)
+
+## 📝 API Examples
+
+```
+GET https://<url>.supabase.co/rest/v1/ingredients_master?apikey=<anon_key>&req_params=eq.value
+```
+
+## 🚀 Local Development Setup
+
+1. Clone the repository
+2. Create a `.env.local` file with the following variables:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=<supabase_url>
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon_key>
+   ```
+   Contact the maintainer for API keys or set up your own Supabase project.
+
+### Setting up your own Supabase project
+
+If you prefer to use your own Supabase instance, create a project with the following tables:
+
+1. **ingredients_master**
+
+   - Columns:
+     - ingredient_id
+     - ingredient
+     - category
+     - image
+     - calories
+   - Note: Data needs to be added manually
+
+2. **recipes_record**
+   - Columns:
+     - id
+     - recipe_name
+     - ingredient_list
+     - created_by
+
+## 🔒 Authentication
+
+- User login required for Create (POST), Update (PATCH), and Delete (DELETE) operations
+- Read (GET) operations are available to all users (including anonymous) on the Recipe page
+- Reading ingredients list for creating recipes requires authentication
+
+## 📋 API Endpoints
+
+### Salad Maker Page
+
+#### GET
+
+- Query parameter: `category`
+
+#### POST
+
+Request body:
+
+```json
 {
-    "recipe_name": "Summer Salad",
-    "created_by": "Jonh",
-    "ingredient_list": [
-        {
-            "ingredient": "green leaf lettuce",
-            "image": "path/to/image.jpg",
-            "calories": 8,
-            "amount": 2,
-            "category": "vegetable"
-        }
-    ]
-} <br/>
+  "recipe_name": "Summer Salad",
+  "created_by": "John",
+  "ingredient_list": [
+    {
+      "ingredient": "green leaf lettuce",
+      "image": "path/to/image.jpg",
+      "calories": 8,
+      "amount": 2,
+      "category": "vegetable"
+    }
+  ]
+}
+```
 
-Page - Recipe <br/>
-GET req.query: no req (get *) <br/>
-PATCH req.qeury: id, req.body
+### Recipe Page
+
+#### GET
+
+- No query parameters (retrieves all recipes)
+
+#### PATCH
+
+- Query parameter: `id`
+- Request body:
+
+```json
 {
-    "ingredient_list": [
-        {
-            "ingredient": "green leaf lettuce",
-            "image": "path/to/image.jpg",
-            "calories": 8,
-            "amount": 2,
-            "category": "vegetable"
-        }
-    ]
-} <br/>
-DELETE req.query: id
+  "ingredient_list": [
+    {
+      "ingredient": "green leaf lettuce",
+      "image": "path/to/image.jpg",
+      "calories": 8,
+      "amount": 2,
+      "category": "vegetable"
+    }
+  ]
+}
+```
+
+#### DELETE
+
+- Query parameter: `id`
