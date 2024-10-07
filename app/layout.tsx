@@ -5,6 +5,7 @@ import AuthButton from "../components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import ThemeSwitch from "./components/ThemeSwitch";
 import { ThemeProvider } from "@/app/contexts/ThemeProvider";
+import type { Metadata, Viewport } from "next";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -16,10 +17,26 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Salad Maker",
   description: "The fastest way to build apps with Next.js and Supabase",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black",
+    title: "Salad Maker",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -28,8 +45,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
     try {
       createClient();
       return true;
@@ -42,29 +57,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <head>
-        <link rel="icon" href="/app/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/apple-icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="apple-mobile-web-app-title" content="Salad Maker" />
-        <meta name="theme-color" content="#ffffff" />
-      </head>
-      <ThemeProvider>
-        <body className="bg-base-200 text-base-content duration-500">
+      <body className="bg-base-200 text-base-content duration-500">
+        <ThemeProvider>
           <NavSidebar />
-
           <main className="min-h-screen ml-auto md:ml-80 flex flex-col items-center">
             {children}
           </main>
@@ -76,8 +71,8 @@ export default function RootLayout({
               <ThemeSwitch />
             </div>
           </div>
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

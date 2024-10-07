@@ -21,6 +21,7 @@ const SidebarItem = ({ url, icon, label }: SidebarItemProps) => {
       }`}
     >
       <Link
+        target="_self"
         href={url}
         className="flex items-center p-2 rounded-lg group mx-6 h-full my-auto"
       >
