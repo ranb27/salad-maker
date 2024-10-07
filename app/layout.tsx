@@ -56,6 +56,10 @@ export default function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="Salad Maker" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <ThemeProvider>
         <body className="bg-base-200 text-base-content duration-500">
