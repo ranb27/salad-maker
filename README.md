@@ -1,6 +1,6 @@
 # salad-maker
  This is Salad Maker using next (typescript, tailwind-daisyui)
- <h1>site url: https://salad-maker-git-main-ranb27s-projects.vercel.app/</h1>
+ <h1>site url: [salad-maker-ranb.vercel.app](https://salad-maker-ranb.vercel.app/)/</h1>
  <h2>**for test account, Email: test@ranb.com, Password: test</h2>
 
 Database Provider & API: supabase (REST)
