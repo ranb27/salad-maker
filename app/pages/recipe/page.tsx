@@ -114,7 +114,7 @@ function page() {
     <>
       <div className="grid grid-cols-1 gap-8 px-10 mt-16 w-full">
         <h1 className="text-4xl font-bold">Recipe</h1>
-        <div className="h-[80vh] bg-base-100 rounded-3xl p-6 overflow-y-scroll">
+        <div className="h-[80vh] bg-base-100 duration-500 rounded-3xl p-6 overflow-y-scroll">
           {isEditing ? (
             <>
               <p className="text-2xl font-bold my-4">

@@ -52,7 +52,7 @@ export default function RecipeCard({
               (viewRecipeModal as HTMLDialogElement).showModal();
             }
           }}
-          className="card bg-base-100 px-6 py-10 grid gap-4 hover:scale-105 cursor-pointer duration-200"
+          className="card bg-base-100 px-6 py-10 grid gap-4 hover:scale-105 cursor-pointer duration-500"
         >
           <p className="text-lg">{recipeName}</p>
           <p className="text-3xl font-bold">
